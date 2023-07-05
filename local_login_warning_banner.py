@@ -1,5 +1,4 @@
 import os
-import re
 from colorama import Fore, Style
 fileName = '/etc/issue'
 banner_text = """WARNING: Unauthorized access to this system is prohibited.
