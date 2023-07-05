@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 from colorama import Fore, Style
 # Custom Imports
