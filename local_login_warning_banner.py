@@ -8,6 +8,6 @@ def localLogingWarning():
     if os.path.exists(fileName):
         with open(fileName, 'w') as file:
             file.write(banner_text)
-            print(Fore.GREEN + "[+] Local Login Warning Banner change SUCCESS: banner changed!" + Style.RESET_ALL)
+            print(Fore.GREEN + "\n\033[1m[+] Local Login Warning Banner change SUCCESS: banner changed!" + Style.RESET_ALL)
     else:
-        print(Fore.RED + '[-] Local Login Warning Banner change FAILED: error file not found' + Style.RESET_ALL)
+        print(Fore.RED + '\n\033[1m[-] Local Login Warning Banner change FAILED: error file not found' + Style.RESET_ALL)
