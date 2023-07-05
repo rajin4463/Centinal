@@ -1,3 +1,4 @@
+import os
 from colorama import Fore, Style
 from local_login_warning_banner import localLogingWarning
 # Custom Imports
@@ -14,13 +15,13 @@ banner = """
 
 print(Fore.YELLOW + banner + Style.RESET_ALL)
 # print(Fore.RED + "[-] This part hasn't still been made, we will make it in time" + Style.RESET_ALL)
-print(Fore.GREEN + "[1] Modify the Local Login Waning Banner" + Style.RESET_ALL)
 
 
 def invalidInput():
     print(Fore.RED + "Invalid Input!! Try again" + Style.RESET_ALL)
 
 def main():
+    print(Fore.GREEN + "[1] Modify the Local Login Waning Banner" + Style.RESET_ALL)
     command_dict = {
         1: localLogingWarning
     }
@@ -36,5 +37,7 @@ def main():
             command_functions()
 
 
-
-main()
+if(os.getuid() == 0):
+    main()
+else:
+    print(Fore.RED + "This script has to be run with root privilages" + Style.RESET_ALL)
