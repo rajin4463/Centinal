@@ -1,4 +1,4 @@
-from colorama import Fore, Style
+from colorama import init, Fore, Style
 # Custom Imports
 
 banner = """
@@ -11,4 +11,5 @@ banner = """
  ########  ########## ###    ####     ###     ########### ###    #### ###     ### ########## 
 """
 
-print(Fore.GREEN + banner + Style.RESET_ALL)
+print(Fore.YELLOW + banner + Style.RESET_ALL)
+print(Fore.RED + "[-] This part hasn't still been made, we will make it in time" + Style.RESET_ALL)
