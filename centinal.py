@@ -43,7 +43,8 @@ def main():
             command_functions()
 
 
-if(os.getuid() == 0):
-    main()
-else:
-    print(Fore.RED + "\n\033[1mThis script has to be run with root privilages" + Style.RESET_ALL)
+if __name__ == '__main__':
+    if(os.getuid() == 0):
+        main()
+    else:
+        print(Fore.RED + "\n\033[1mThis script has to be run with root privilages" + Style.RESET_ALL)
