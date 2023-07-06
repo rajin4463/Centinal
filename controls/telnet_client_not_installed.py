@@ -5,7 +5,7 @@ def telnet():
     compare = "telnet	install ok installed	installed"
     command = "dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' telnet"
     process=subprocess.run(command, shell=True, stdout=subprocess.PIPE)
-    completed_process.stdout.decode('utf-8')
+    process.stdout.decode('utf-8')
 
     if compare in output:
         print(Fore.RED + "\n\033[1m[-] telnet client was found.")
