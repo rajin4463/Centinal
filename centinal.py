@@ -34,7 +34,7 @@ def main():
     exit_flag = True
 
     while exit_flag:
-        user_input = int(input("\n\033[1mEnter command number to run. Input -1 to exit\n"))
+        user_input = int(input("\n\033[1mEnter command number to run. Input -1 to exit\033[0m\n"))
         if user_input == -1:
             print(Fore.GREEN + "[-] Bye Bye " + Style.RESET_ALL + "👋")
             exit_flag = False
@@ -47,4 +47,4 @@ if __name__ == '__main__':
     if(os.getuid() == 0):
         main()
     else:
-        print(Fore.RED + "\n\033[1mThis script has to be run with root privilages" + Style.RESET_ALL)
+        print(Fore.RED + "\n\033[1mThis script has to be run with root privilages\033[0m" + Style.RESET_ALL)
