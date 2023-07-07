@@ -19,5 +19,5 @@ def telnet():
             print(Fore.RED + "\n\033[1m[-]telnet client purge FAILED: error something went wrong\n" + Style.RESET_ALL)
             print(result.stderr.decode("utf-8"))
     else:
-        print(Fore.RED + "\n\033[1m[-]telnet client purge FAILED: error telnet client dosen't seem to be installed.")
+        print(Fore.RED + "\n\033[1m[-]telnet client purge FAILED: error telnet client dosen't seem to be installed." + Style.RESET_ALL)
         print(output)
