@@ -15,6 +15,7 @@ def localLogingWarning():
                 file.write(banner_text)
                 print(Fore.GREEN + "\n\033[1m[+] Local Login Warning Banner change SUCCESS: banner changed!" + Style.RESET_ALL)
             file.close()
+            print(lines)
         else:
             print(Fore.RED + "\n\033[1m[-] Local Login Warning Banner change FAILED: error file seems to be changed" + Style.RESET_ALL)
     else:
