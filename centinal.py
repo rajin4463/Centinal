@@ -37,7 +37,6 @@ def usrinput():
         2: telnet
     }
     exit_flag = True
-    user_input = 0
     while exit_flag:
         user_input = int(input("\n\033[1mEnter command number to run. Input -1 to exit\033[0m\n"))
         if user_input == -1:

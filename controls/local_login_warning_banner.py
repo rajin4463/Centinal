@@ -10,7 +10,6 @@ def localLogingWarning():
         with open(fileName, 'r') as file:
             lines = file.readlines()
         file.close()
-        print(lines)
         if any(desired_string in line for line in lines):
             with open(fileName, 'a') as file:
                 file.write(banner_text)
