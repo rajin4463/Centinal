@@ -1,3 +1,2 @@
 #!/bin/bash
-# echo 'cat /etc/issue' >> /home/$(logname)/.bashrc
-echo ok
+echo 'cat /etc/issue' >> /home/$(logname)/.bashrc
