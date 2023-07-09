@@ -5,26 +5,23 @@ fileName = 'etc/issue'
 bashFile = 'scripts/loginMod.sh'
 banner_text = """WARNING: Unauthorized access to this system is prohibited.
 By accessing this system, you agree that your actions may be monitored and recorded."""
-bashFileCommand = [ "bash", bashFile]
+bashFileCommand = ["bash", bashFile]
 desired_string = "Ubuntu 22.04"
 def localLogingWarning():
     if os.path.exists(fileName):
         with open(fileName, 'r') as file:
             lines = file.readlines()
+            content = ''.join(lines)
         file.close()
-        check(lines)
+        if (banner_text in content):
+            print(Fore.GREEN + "\n\033[1m[+] Local Login Warning Banner change FAILED: banner seems to be changed" + Style.RESET_ALL)
+        else:
+            if any(desired_string in line for line in lines):
+                modifyFiles()
+            else:
+                print(Fore.RED + "\n\033[1m[-] Local Login Warning Banner change FAILED: error file seems to be changed" + Style.RESET_ALL)
     else:
         print(Fore.RED + '\n\033[1m[-] Local Login Warning Banner change FAILED: error file not found' + Style.RESET_ALL)
-
-def check(lines):
-    if any(banner_text in line for line in lines):
-        print(Fore.GREEN + "\n\033[1m[-] Local Login Warning Banner change FAILED: banner has already seems to be changed" + Style.RESET_ALL)
-    else:
-        if any(desired_string in line for line in lines):
-            print(Fore.RED + "\n\033[1m[-] Local Login Warning Banner change FAILED: error file seems to be changed" + Style.RESET_ALL)
-        else:
-            modifyFiles()
-
 
 def modifyFiles():
     try:
