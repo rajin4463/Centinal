@@ -17,9 +17,6 @@ banner = """
 
 print(Fore.BLUE + banner + Style.RESET_ALL)
 
-def invalidInput():
-    print(Fore.RED + "Invalid Input!! Try again" + Style.RESET_ALL)
-
 possible_commands = """
 [1] Configure the Local Login Waning Banner
 [2] Ensure the telnet client is not installed
@@ -27,12 +24,20 @@ possible_commands = """
 
 def main():
     print(Fore.GREEN + possible_commands + Style.RESET_ALL)
+    try:
+        usrinput()
+    except:
+        typeError()
+        main()
+
+
+def usrinput():
     command_dict = {
         1: localLogingWarning,
         2: telnet
     }
     exit_flag = True
-
+    user_input = 0
     while exit_flag:
         user_input = int(input("\n\033[1mEnter command number to run. Input -1 to exit\033[0m\n"))
         if user_input == -1:
@@ -42,6 +47,12 @@ def main():
             command_functions = command_dict.get(user_input, invalidInput)
             command_functions()
 
+def invalidInput():
+    print(Fore.RED + "[-] Invalid Input!! Try again." + Style.RESET_ALL)
+    print(Fore.GREEN + possible_commands + Style.RESET_ALL)
+
+def typeError():
+    print(Fore.RED + "[-] Invalid Input Type!! Only numbers are allowed. Try again." + Style.RESET_ALL)
 
 if __name__ == '__main__':
     if(os.getuid() == 0):
