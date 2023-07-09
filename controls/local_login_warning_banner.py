@@ -1,9 +1,11 @@
 import os
+import subprocess
 from colorama import Fore, Style
 fileName = '/etc/issue'
-banner_text = """\nWARNING: Unauthorized access to this system is prohibited.
-By accessing this system, you agree that your actions may be monitored and recorded.
-"""
+bashFile = 'scripts/loginMod.sh'
+banner_text = """WARNING: Unauthorized access to this system is prohibited.
+By accessing this system, you agree that your actions may be monitored and recorded."""
+bashFileCommand = [ "bash", bashFile]
 desired_string = "Ubuntu 22.04"
 def localLogingWarning():
     if os.path.exists(fileName):
@@ -11,11 +13,23 @@ def localLogingWarning():
             lines = file.readlines()
         file.close()
         if any(desired_string in line for line in lines):
-            with open(fileName, 'a') as file:
-                file.write(banner_text)
-                print(Fore.GREEN + "\n\033[1m[+] Local Login Warning Banner change SUCCESS: banner changed!" + Style.RESET_ALL)
-            file.close()
+            modifyFiles()
         else:
             print(Fore.RED + "\n\033[1m[-] Local Login Warning Banner change FAILED: error file seems to be changed" + Style.RESET_ALL)
     else:
         print(Fore.RED + '\n\033[1m[-] Local Login Warning Banner change FAILED: error file not found' + Style.RESET_ALL)
+
+def modifyFiles():
+    try:
+        with open(fileName, 'w') as file:
+            file.write(banner_text)
+        file.close()
+        process = subprocess.Popen(bashFileCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+        if process.returncode == 0:
+            print(Fore.GREEN + '\n\033[1m[+] Local Login Warning Banner change SUCCESS: banner changed!' + Style.RESET_ALL)
+        else:
+            print(Fore.RED + '\n\033[1m[-] Local Login Warning Banner change FAILED: error something went wrong' + Style.RESET_ALL)
+            print(stderr.decode("utf-8"))
+    except:
+        print(Fore.RED + '\n\033[1m[-] Local Login Warning Banner change FAILED: error something went wrong' + Style.RESET_ALL)
