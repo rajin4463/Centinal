@@ -1,7 +1,7 @@
 import os
 import subprocess
 from colorama import Fore, Style
-fileName = 'etc/issue'
+fileName = '/etc/issue'
 bashFile = 'scripts/loginMod.sh'
 banner_text = """WARNING: Unauthorized access to this system is prohibited.
 By accessing this system, you agree that your actions may be monitored and recorded."""
