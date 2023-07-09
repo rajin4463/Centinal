@@ -1,2 +1,2 @@
 #!/bin/bash
-echo 'cat /etc/issue' >> /home/$SUDO_USER/.bashrc
+echo 'cat /etc/issue' >> /home/$(logname)/.bashrc
