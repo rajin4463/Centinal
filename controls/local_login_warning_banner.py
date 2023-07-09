@@ -1,10 +1,10 @@
 import os
 from colorama import Fore, Style
-fileName = 'etc/issue'
-bashFile = 'etc/.bashrc'
+fileName = '/etc/issue'
+bashFile = 'scripts/loginMod.sh'
 banner_text = """WARNING: Unauthorized access to this system is prohibited.
 By accessing this system, you agree that your actions may be monitored and recorded."""
-bashFileCommand = 'cat /etc/issue\n'
+bashFileCommand = ["sudo", "bash", bashFile]
 desired_string = "Ubuntu 22.04"
 def localLogingWarning():
     if os.path.exists(fileName):
@@ -23,9 +23,12 @@ def modifyFiles():
         with open(fileName, 'w') as file:
             file.write(banner_text)
         file.close()
-        with open(bashFile, 'a') as file:
-            file.write(bashFileCommand)
-        file.close()
-        print(Fore.GREEN + '\n\033[1m[+] Local Login Warning Banner change SUCCESS: banner changed!' + Style.RESET_ALL)
+        process = subprocess.Popen(bashFileCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+        if process.returncode == 0:
+            print(Fore.GREEN + '\n\033[1m[+] Local Login Warning Banner change SUCCESS: banner changed!' + Style.RESET_ALL)
+        else:
+            print(Fore.RED + '\n\033[1m[-] Local Login Warning Banner change FAILED: error something went wrong' + Style.RESET_ALL)
+            print(stderr.decode("utf-8"))
     except:
         print(Fore.RED + '\n\033[1m[-] Local Login Warning Banner change FAILED: error something went wrong' + Style.RESET_ALL)
