@@ -1,10 +1,10 @@
 import os
 from colorama import Fore, Style
-fileName = '/etc/issue'
-bashFile = '~/.bashrc'
+fileName = 'etc/issue'
+bashFile = 'etc/.bashrc'
 banner_text = """WARNING: Unauthorized access to this system is prohibited.
 By accessing this system, you agree that your actions may be monitored and recorded."""
-bashFileCommand = "cat /etc/issue"
+bashFileCommand = 'cat /etc/issue\n'
 desired_string = "Ubuntu 22.04"
 def localLogingWarning():
     if os.path.exists(fileName):
