@@ -3,8 +3,7 @@ import subprocess
 from colorama import Fore, Style
 fileName = '/etc/issue'
 bashFile = 'scripts/loginMod.sh'
-banner_text = """WARNING: Unauthorized access to this system is prohibited.
-By accessing this system, you agree that your actions may be monitored and recorded."""
+banner_text = """WARNING: Unauthorized access to this system is prohibited.\n By accessing this system, you agree that your actions may be monitored and recorded."""
 bashFileCommand = ["bash", bashFile]
 desired_string = "Ubuntu 22.04"
 def localLogingWarning():
