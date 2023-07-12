@@ -52,11 +52,11 @@ def runAll():
     telnet_client_removal = threading.Thread(target=telnet, daemon=False)
 
     local_Warning_Banner.start()
-    telnet.start()
+    telnet_client_removal.start()
 
     #wait until threads finish excuting before running anything after <POINT>
     local_Warning_Banner.join()
-    telnet.join()
+    telnet_client_removal.join()
 
     """
     <POINT>
