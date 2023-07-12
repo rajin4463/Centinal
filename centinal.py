@@ -48,7 +48,7 @@ def typeError():
 
 def runAll():
     #multithreading
-    local_Warning_Banner = threading.Thread(target=local_Loging_Warning, daemon=False)
+    local_Warning_Banner = threading.Thread(target=localLogingWarning, daemon=False)
     telnet_client_removal = threading.Thread(target=telnet, daemon=False)
 
     local_Warning_Banner.start()
