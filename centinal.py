@@ -48,14 +48,14 @@ def typeError():
 
 def runAll():
     #multithreading
-    local_Loging_Warning = threading.Thread(target=local_Loging_Warning, daemon=False)
+    local_Warning_Banner = threading.Thread(target=local_Loging_Warning, daemon=False)
     telnet_client_removal = threading.Thread(target=telnet, daemon=False)
 
-    local_Loging_Warning.start()
+    local_Warning_Banner.start()
     telnet.start()
 
     #wait until threads finish excuting before running anything after <POINT>
-    local_Loging_Warning.join()
+    local_Warning_Banner.join()
     telnet.join()
 
     """
