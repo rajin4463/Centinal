@@ -60,7 +60,7 @@ def runAll():
 
     """
     <POINT>
-    anything below this point will only run after the above threads have executed"""
+    anything below this line will only run after the above threads have executed"""
         
 
 #Possible command options list

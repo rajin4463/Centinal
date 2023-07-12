@@ -8,6 +8,7 @@ bashFile = 'scripts/loginMod.sh'
 banner_text = """WARNING: Unauthorized access to this system is prohibited. By accessing this system, you agree that your actions may be monitored and recorded. """
 bashFileCommand = ["bash", bashFile]
 desired_string = "Ubuntu 22.04"
+
 def localLogingWarning():
     if os.path.exists(fileName):
         with open(fileName, 'r') as file:
