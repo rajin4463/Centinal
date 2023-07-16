@@ -22,8 +22,7 @@ def main():
     print(Fore.GREEN + possible_commands + Style.RESET_ALL)
     try:
         usrinput()
-    except(EOFError):
-        print(EOFError)
+    except:
         typeError()
         main()
 
