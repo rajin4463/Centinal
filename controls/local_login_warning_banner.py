@@ -16,17 +16,19 @@ def localLogingWarning():
             content = ''.join(lines)
         file.close()
         if (banner_text in content):
-            logger.error('''[-] /etc/issue has been modified with the banner.''')
+            logger.error('''[-] /etc/issue has been modified with the warning banner.''')
             print(Fore.RED + "\n\033[1m[+] Local Login Warning Banner change FAILED: banner seems to be in place" + Style.RESET_ALL)
         else:
             if any(desired_string in line for line in lines):
                 modifyFiles()
             else:
                 logger.error('''[-] /etc/issue has been modified.\n [-] OS indication was not found, assuming file has been modified.\n [-] File has not been modified.''')
-                print(Fore.RED + "\n\033[1m[-] Local Login Warning Banner change FAILED: error file seems to be changed" + Style.RESET_ALL)
+                print(Fore.RED + "\n\033[1m[-] Local Login Warning Banner change FAILED: error file seems to be changed")
+                print("\n\033[1mCheck logs for more information" + Style.RESET_ALL)
     else:
         logger.error('[-] Local Login Warning Banner change FAILED.\n [-] error `/etc/issue` file not found.')
-        print(Fore.RED + '\n\033[1m[-] Local Login Warning Banner change FAILED: error file not found' + Style.RESET_ALL)
+        print(Fore.RED + '\n\033[1m[-] Local Login Warning Banner change FAILED: error file not found')
+        print("\n\033[1mCheck logs for more information" + Style.RESET_ALL)
 
 def modifyFiles():
     try:
