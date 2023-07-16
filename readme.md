@@ -2,7 +2,7 @@
 Centinal is a user-friendly Python script that incorporates five essential security controls from the CSI benchmark into Ubuntu 22.04 LTS, offering a simple and intuitive command line interface.
 
 ## ScreenShots
-**Insert ScreenShot Here____________**
+<p><img src="readme-assets/screenshot.png" /></p>
 
 ## Installation
 The following pre-requisites are needed to run the project,
