@@ -38,4 +38,4 @@ The following pre-requisites are needed to run the project,
 2. Select Security Controls
 
     `Enter the control number, eg: 1 to run each control or run them all at once`
-    `Enter `-1` to exit the script`
+    `Enter -1 to exit the script`
