@@ -1,8 +1,8 @@
 import os
 import subprocess
 from colorama import Fore, Style
-#fileName= '/etc/pam.d/common-password'
-fileName= '/home/janith/hello'
+fileName= '/etc/pam.d/common-password'
+#fileName= '/home/janith/hello'
 
 pass_string = 'password        requisite                       pam_pwquality.so minlen=14 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1 difok=7 enforce_for_root retry=3'
 
