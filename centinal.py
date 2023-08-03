@@ -5,6 +5,7 @@ from colorama import Fore, Style
 # Custom Imports
 from controls.local_login_warning_banner import localLogingWarning
 from controls.telnet_client_not_installed import telnet
+from controls.password_creation import passwd_path
 
 banner = """
  ::::::::  :::::::::: ::::    ::: ::::::::::: ::::::::::: ::::    :::     :::     :::        
@@ -66,6 +67,7 @@ def runAll():
 possible_commands = """
 [1] Configure the Local Login Waning Banner
 [2] Ensure the telnet client is not installed
+[3] password
 [6] Run fix for all controls
 """
 
@@ -73,6 +75,7 @@ possible_commands = """
 command_dict = {
     1: localLogingWarning,
     2: telnet,
+    3: passwd_path,
     6: runAll
 }
 
