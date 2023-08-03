@@ -41,10 +41,10 @@ def modifypass(file_path, name_to_find,new_line_content):
                 for line_number, line_content in enumerate(input_file, start=1):
                     if line_number == line_number_to_edit:
                         temp_file.write(new_line_content + '\n')
-                        print(Fore.RED + "\n\033[1m[-] A")
+                        print(Fore.GREEN + '\n\033[1m[+] Min password length set to 14 characters!' + Style.RESET_ALL)
                     else:
                         temp_file.write(line_content)
-                        print(Fore.RED + "\n\033[1m[-] B")
+                        #print(Fore.RED + "\n\033[1m[-] B")
             os.replace(temp_file_path, file_path)
             return True
         else:
