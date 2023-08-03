@@ -6,7 +6,7 @@ fileName= '/etc/pam.d/common-password'
 
 pass_string = 'password        requisite                       pam_pwquality.so minlen=14 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1 difok=7 enforce_for_root retry=3'
 
-file_path = '/home/janith/hello'
+file_path = '/etc/pam.d/common-password'
 name_to_find ='pam_pwquality.so'
 new_line_content = 'password        requisite                       pam_pwquality.so minlen=14 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1 difok=7 enforce_for_root retry=3'
 
