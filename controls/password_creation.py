@@ -18,7 +18,7 @@ def passwd_path():
             content = ''.join(lines)
         file.close()
         if(pass_string in content):
-            print(Fore.RED + "\n\033[1m[+] Already updated]" + Style.RESET_ALL)
+            print(Fore.GREEN + '\n\033[1m[+] Already updated!' + Style.RESET_ALL)
         else:
             
             modifypass(file_path, name_to_find,new_line_content)
