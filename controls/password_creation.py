@@ -24,7 +24,7 @@ def passwd_path():
             modifypass(file_path, name_to_find,new_line_content)
 
     else:
-        print(Fore.RED + "\n\033[1m[-] Common password path doesn't exists")
+        print(Fore.RED + "\n\033[1m[-] Common password path doesn't exists" + Style.RESET_ALL) 
 
 def find_line_number_by_name(file_path ,name_to_find):
     with open(file_path, 'r') as input_file:
@@ -41,16 +41,16 @@ def modifypass(file_path, name_to_find,new_line_content):
                 for line_number, line_content in enumerate(input_file, start=1):
                     if line_number == line_number_to_edit:
                         temp_file.write(new_line_content + '\n')
-                        print(Fore.GREEN + '\n\033[1m[+] Min password length set to 14 characters!' + Style.RESET_ALL)
+                        print(Fore.GREEN + '\n\033[1m[+] Minimum password length set to 14 characters!' + Style.RESET_ALL)
                     else:
                         temp_file.write(line_content)
                         #print(Fore.RED + "\n\033[1m[-] B")
             os.replace(temp_file_path, file_path)
             return True
         else:
-            print(Fore.RED + "\n\033[1m[-] pam_pwquality.so file not found. Trying to installing")
+            print(Fore.RED + "\n\033[1m[-] pam_pwquality.so file not found. Trying to installing" + Style.RESET_ALL)
             install_pam_pwquality_package()
-            print(Fore.RED + "\n\033[1m[-] pam_pwquality.so file installed successfully. Please rerun the script!")
+            print(Fore.RED + "\n\033[1m[-] pam_pwquality.so file installed successfully. Please rerun the script!" + Style.RESET_ALL)
             #return False
 
 def install_pam_pwquality_package():
@@ -58,6 +58,6 @@ def install_pam_pwquality_package():
         subprocess.run(["sudo", "apt-get","install", "-y", "libpam-pwquality"])
         return True
     except Exception as e:
-        print(Fore.RED + "\n\033[1m[-] Failed to install libpam-pwquality")
+        print(Fore.RED + "\n\033[1m[-] Failed to install libpam-pwquality" + Style.RESET_ALL)
         return False
             

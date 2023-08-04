@@ -67,7 +67,7 @@ def runAll():
 possible_commands = """
 [1] Configure the Local Login Waning Banner
 [2] Ensure the telnet client is not installed
-[3] password
+[3] Ensure password creation requirments are configured
 [6] Run fix for all controls
 """
 
