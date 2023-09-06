@@ -6,7 +6,7 @@ from colorama import Fore, Style
 from controls.local_login_warning_banner import localLogingWarning
 from controls.telnet_client_not_installed import telnet
 from controls.password_creation import passwd_path
-from controls.minimumdays import checkConfig as minpass
+from controls.minimumdays import minpass
 
 banner = """
  ::::::::  :::::::::: ::::    ::: ::::::::::: ::::::::::: ::::    :::     :::     :::        
