@@ -6,7 +6,7 @@ from colorama import Fore, Style
 from controls.local_login_warning_banner import localLogingWarning
 from controls.telnet_client_not_installed import telnet
 from controls.password_creation import passwd_path
-from controls.minimumdays import minimum
+from controls.minimumdays import minpass
 
 banner = """
  ::::::::  :::::::::: ::::    ::: ::::::::::: ::::::::::: ::::    :::     :::     :::        
@@ -78,7 +78,7 @@ command_dict = {
     1: localLogingWarning,
     2: telnet,
     3: passwd_path,
-    4: minimum,
+    4: minpass,
     6: runAll
 }
 
