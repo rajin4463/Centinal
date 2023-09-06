@@ -18,7 +18,7 @@ def getInput():
 def minpass():
     username, min_days = getInput()
     check_command = ["chage", "-l", username]
-    check_process = subprocess.run(check_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    check_process = subprocess.run(check_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
     if check_process.returncode != 0:
         logger.error(
             "[-] Minimum number of days for password change FAILED: Failed to run chage command.\n")
