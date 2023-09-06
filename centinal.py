@@ -6,6 +6,7 @@ from colorama import Fore, Style
 from controls.local_login_warning_banner import localLogingWarning
 from controls.telnet_client_not_installed import telnet
 from controls.password_creation import passwd_path
+from controls.minimumdays import minimum
 
 banner = """
  ::::::::  :::::::::: ::::    ::: ::::::::::: ::::::::::: ::::    :::     :::     :::        
@@ -68,6 +69,7 @@ possible_commands = """
 [1] Configure the Local Login Waning Banner
 [2] Ensure the telnet client is not installed
 [3] Ensure password creation requirments are configured
+[4] Minimum number of days for password changed
 [6] Run fix for all controls
 """
 
@@ -76,6 +78,7 @@ command_dict = {
     1: localLogingWarning,
     2: telnet,
     3: passwd_path,
+    4: minimum,
     6: runAll
 }
 
