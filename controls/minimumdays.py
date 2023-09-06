@@ -23,7 +23,7 @@ def minpass():
         print("\n\033[1m[-] Check Error logs for more detail." + Style.RESET_ALL)
         return
     else:
-        set_min_days = int(check_proces.stdout.split()[27])
+        set_min_days = int(check_process.stdout.split()[27])
         print(
             Fore.GREEN + f"\n\033[1m[+] Current minimum number of days for password change is: {set_min_days}" + Style.RESET_ALL)
         userCheck = input(
