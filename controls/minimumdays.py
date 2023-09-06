@@ -15,7 +15,7 @@ def minpass():
     username ,min_days = getInput()
     if (int(min_days) >= 1):
         chage_command = ["chage", "-m", str(min_days), username]
-        subprocess.run(chage_command,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.run(chage_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         if process.returncode == 0:
             print(Fore.GREEN + "\n\033[1m[+] Successfully Changed minimum number of days for password change" + Style.RESET_ALL)
         else:
@@ -26,3 +26,8 @@ def minpass():
     else:
         print(Fore.RED + "\n\033[1m[-] Minimum number of days should be lager than 1" + Style.RESET_ALL)
         minpass()
+
+def checkConfig():
+    commands = ["grep", "PASS_MIN_DAYS", "/etc/login.defs"]
+    execute_result = subprocess.run(commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    print(execute_result.stdout)
