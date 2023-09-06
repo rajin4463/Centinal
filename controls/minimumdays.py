@@ -1,28 +1,41 @@
 import shlex
 import subprocess
+# import misc.logger
+from colorama import Fore, Style
+# logger = misc.logger.setup_logger()
 
-commands = "grep PASS_MIN_DAYS /etc/login.defs"
-execute_result = subprocess.run(shlex.split(commands), text=True, capture_output=True)
-print(execute_result.stdout.split("\n"))
+# commands = "grep PASS_MIN_DAYS /etc/login.defs"
+# execute_result = subprocess.run(shlex.split(commands), text=True, capture_output=True)
 
-if "/etc/login.defs:PASS_MIN_DAYS\t0" in execute_result.stdout:
-    print(True)
-else:
-    print(False)
-
-COMPANY_POLICY_DAY = input("Enter a minimum number of days for the password to be changed: ")
-
-def replace_in_login_defs(user_input):
-    old_string = 'PASS_MIN_DAYS\t0'
-    new_string = f'PASS_MIN_DAYS\t{user_input}'
+def set_min_days_between_password_changes(username, min_days):
     try:
-        with open('/etc/login.defs', 'r') as file:
-            content = file.read()
-            content = content.replace(old_string, new_string)
-        with open('/etc/login.defs', 'w') as file:
-            file.write(content)
+        chage_command = ["chage", "-m", str(min_days), username]
+        subprocess.run(chage_command)
         print("Value replaced successfully.")
+        return True
     except Exception as e:
         print(f"Error occurred: {e}")
+        return False
 
-replace_in_login_defs(COMPANY_POLICY_DAY)
+def getInput():
+    COMPANY_POLICY_DAY = input(Fore.GREEN + f"\n\033[1m[+] Enter the user name to be changed: " + Style.RESET_ALL)
+    min_days = input("[+] Enter a minimum number of days for the password to be changed: " + Style.RESET_ALL)
+
+def minimum():
+    if (int(min_days) >= 1):
+        set_min = set_min_days_between_password_changes(COMPANY_POLICY_DAY, min_days)
+        if (set_min == True):
+            print(Fore.GREEN + f"\n\033[1m[+] Minimum day between Passwords have been set" + Style.RESET_ALL) 
+        else:
+            print(Style.RED + "\n\033[1m[-] Error Occurred, check logs for more information" + Style.RESET_ALL)
+            # logger.error('''[-] Error Occurred, while changing the minimum number of days for the password''')
+            # logger.error(e)
+
+        
+    else:
+        print(Fore.RED + f"\n\033[1m[-] Minimum day's must be greater than or equal to 1" + Style.RESET_ALL) 
+        getInput()
+
+COMPANY_POLICY_DAY = input(Fore.GREEN + f"\n\033[1m[+] Enter the user name to be changed: " + Style.RESET_ALL)
+min_days = input(Fore.GREEN + "\n\033[1m[+] Enter a minimum number of days for the password to be changed: " + Style.RESET_ALL)
+minimum()
