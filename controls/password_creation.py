@@ -19,11 +19,17 @@ def passwd_path():
             content = ''.join(lines)
         file.close()
         if(pass_string in content):
-            print(Fore.GREEN + '\n\033[1m[+] Already updated!' + Style.RESET_ALL)
+            print(Fore.GREEN + '\n\033[1m[+] Minimum password length Already updated!' + Style.RESET_ALL)
         else:
-            
-            modifypass(file_path, name_to_find,new_line_content)
-
+            userCheck = input(Fore.GREEN + f"\n\033[1m[+] Do you want to change Minimum password length to 14 [Y/n] ? " + Style.RESET_ALL)
+            userCheck = userCheck.lower()
+            if userCheck == 'y':
+                modifypass(file_path, name_to_find,new_line_content)
+            elif (userCheck == 'n'): 
+                print(Fore.RED + "\n\033[1m[+] Minimum password length won't be chnaged!" + Style.RESET_ALL)
+            else:
+                print(Fore.RED + "\n\033[1m[-] INVALID INPUT: Enter 'y' or 'n'.\n" + Style.RESET_ALL)
+                passwd_path()
     else:
         logger.error("[-] Minimum password length FAILED: File not found")
         logger.error(f"Common password path doesn't exists. \n File not found: {fileName}")
