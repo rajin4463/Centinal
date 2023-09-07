@@ -1,8 +1,9 @@
 import os
 import subprocess
+import misc.logger
 from colorama import Fore, Style
+logger = misc.logger.setup_logger()
 fileName= '/etc/pam.d/common-password'
-#fileName= '/home/janith/hello'
 
 pass_string = 'password        requisite                       pam_pwquality.so minlen=14 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1 difok=7 enforce_for_root retry=3'
 
@@ -24,7 +25,10 @@ def passwd_path():
             modifypass(file_path, name_to_find,new_line_content)
 
     else:
-        print(Fore.RED + "\n\033[1m[-] Common password path doesn't exists" + Style.RESET_ALL) 
+        logger.error("[-] Minimum password length FAILED: File not found")
+        logger.error(f"Common password path doesn't exists. \n File not found: {fileName}")
+        print(Fore.RED + "\n\033[1m[-] Common password path doesn't exists" + Style.RESET_ALL)
+        print(Fore.RED + "\n\033[1mCheck logs for more information" + Style.RESET_ALL)
 
 def find_line_number_by_name(file_path ,name_to_find):
     with open(file_path, 'r') as input_file:
@@ -44,20 +48,10 @@ def modifypass(file_path, name_to_find,new_line_content):
                         print(Fore.GREEN + '\n\033[1m[+] Minimum password length set to 14 characters!' + Style.RESET_ALL)
                     else:
                         temp_file.write(line_content)
-                        #print(Fore.RED + "\n\033[1m[-] B")
             os.replace(temp_file_path, file_path)
             return True
         else:
-            print(Fore.RED + "\n\033[1m[-] pam_pwquality.so file not found. Trying to installing" + Style.RESET_ALL)
-            install_pam_pwquality_package()
-            print(Fore.RED + "\n\033[1m[-] pam_pwquality.so file installed successfully. Please rerun the script!" + Style.RESET_ALL)
-            #return False
-
-def install_pam_pwquality_package():
-    try:
-        subprocess.run(["sudo", "apt-get","install", "-y", "libpam-pwquality"])
-        return True
-    except Exception as e:
-        print(Fore.RED + "\n\033[1m[-] Failed to install libpam-pwquality" + Style.RESET_ALL)
-        return False
-            
+            logger.error("[-] Minimum password length FAILED: pam_pwquality.so File not found")
+            logger.error("[-] Minimum password length not set.")
+            print(Fore.RED + "\n\033[1m[-] Minimum password length FAILED: pam_pwquality.so File not found" + Style.RESET_ALL)
+            print(Fore.RED + "\n\033[1m[-] Minimum password length not set." + Style.RESET_ALL)
