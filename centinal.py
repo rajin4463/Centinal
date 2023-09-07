@@ -46,19 +46,12 @@ def invalidInput():
 def typeError():
     print(Fore.RED + "[-] Invalid Input Type!! Only numbers are allowed. Try again." + Style.RESET_ALL)
 
-def runAll():
-    localLogingWarning
-    telnet
-    passwd_path
-    minpass
-
 #Possible command options list
 possible_commands = """
 [1] Configure the Local Login Waning Banner
 [2] Ensure the telnet client is not installed
 [3] Ensure password creation requirments are configured
 [4] Minimum number of days for password changed
-[6] Run fix for all controls
 """
 
 # Command Dictonary to store the commands and related exec nums
@@ -66,8 +59,7 @@ command_dict = {
     1: localLogingWarning,
     2: telnet,
     3: passwd_path,
-    4: minpass,
-    6: runAll
+    4: minpass
 }
 
 if __name__ == '__main__':

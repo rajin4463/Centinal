@@ -4,7 +4,7 @@ from colorama import Fore, Style
 logger = misc.logger.setup_logger()
 
 def telnet():
-    user_input = input("Do you want to execute the rest of the code? (y/n): ")
+    user_input = input("Do you want to remove telnet? (y/n): ")
     if user_input.lower() not in ['y', 'n']:
         print("Invalid input. Please enter 'y' or 'n'.")
         telnet()
