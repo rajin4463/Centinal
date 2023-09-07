@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import os
-import threading
 from colorama import Fore, Style
 # Custom Imports
 from controls.local_login_warning_banner import localLogingWarning
@@ -48,21 +47,10 @@ def typeError():
     print(Fore.RED + "[-] Invalid Input Type!! Only numbers are allowed. Try again." + Style.RESET_ALL)
 
 def runAll():
-    #multithreading
-    local_Warning_Banner = threading.Thread(target=localLogingWarning, daemon=False)
-    telnet_client_removal = threading.Thread(target=telnet, daemon=False)
-
-    local_Warning_Banner.start()
-    telnet_client_removal.start()
-
-    #wait until threads finish excuting before running anything after <POINT>
-    local_Warning_Banner.join()
-    telnet_client_removal.join()
-
-    """
-    <POINT>
-    anything below this line will only run after the above threads have executed"""
-        
+    localLogingWarning
+    telnet
+    passwd_path
+    minpass
 
 #Possible command options list
 possible_commands = """
