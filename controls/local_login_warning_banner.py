@@ -14,8 +14,8 @@ def user_check():
     userCheck = userCheck.lower()
     if userCheck == 'y':
         return True
-    elif (userCheck == 'n'): 
-        print(Fore.RED + "\n\033[1m[+] Local Login Warning Banner won't be chnaged!" + Style.RESET_ALL)
+    elif userCheck == 'n': 
+        print(Fore.RED + "\n\033[1m[-] Local Login Warning Banner won't be chnaged!" + Style.RESET_ALL)
         return False
     else:
         print(Fore.RED + "\n\033[1m[-] INVALID INPUT: Enter 'y' or 'n'.\n" + Style.RESET_ALL)
@@ -23,12 +23,13 @@ def user_check():
 
 def localLogingWarning():
     check = user_check()
-    if check != False:
+    if check == False:
+        return
+    elif check == True:
         if os.path.exists(fileName):
             with open(fileName, 'r') as file:
                 lines = file.readlines()
                 content = ''.join(lines)
-            file.close()
             if (banner_text in content):
                 logger.error('''[-] /etc/issue has been modified with the warning banner.''')
                 print(Fore.RED + "\n\033[1m[+] Local Login Warning Banner change FAILED: banner seems to be in place" + Style.RESET_ALL)
@@ -43,9 +44,6 @@ def localLogingWarning():
             logger.error('[-] Local Login Warning Banner change FAILED.\n [-] error `/etc/issue` file not found.')
             print(Fore.RED + '\n\033[1m[-] Local Login Warning Banner change FAILED: error file not found')
             print("\n\033[1mCheck logs for more information" + Style.RESET_ALL)
-    elif check == False:
-        print(Fore.RED + "\n\033[1m[-] Local Login Warning Banner not changed" + Style.RESET_ALL)
-        return
 
 def modifyFiles():
     try:
