@@ -6,6 +6,7 @@ from controls.local_login_warning_banner import localLogingWarning
 from controls.telnet_client_not_installed import telnet
 from controls.password_creation import passwd_path
 from controls.minimumdays import minpass
+from controls.password_reuse import passwd_reuse
 
 banner = """
  ::::::::  :::::::::: ::::    ::: ::::::::::: ::::::::::: ::::    :::     :::     :::        
@@ -52,6 +53,7 @@ possible_commands = """
 [2] Ensure the telnet client is not installed
 [3] Ensure password creation requirments are configured
 [4] Minimum number of days for password changed
+[5] Set Password resuse limit
 """
 
 # Command Dictonary to store the commands and related exec nums
@@ -59,7 +61,8 @@ command_dict = {
     1: localLogingWarning,
     2: telnet,
     3: passwd_path,
-    4: minpass
+    4: minpass,
+    5: passwd_reuse
 }
 
 if __name__ == '__main__':

@@ -6,7 +6,7 @@ logger = misc.logger.setup_logger()
 file_name = '/etc/pam.d/common-password'
 remember_option = '5'
 
-def edit_pam_file():
+def passwd_reuse():
   with open(file_name, 'r') as f:
     lines = f.readlines()
 
