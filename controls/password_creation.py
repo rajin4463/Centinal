@@ -1,5 +1,4 @@
 import os
-import subprocess
 import misc.logger
 from colorama import Fore, Style
 logger = misc.logger.setup_logger()
