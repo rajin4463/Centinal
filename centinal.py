@@ -50,27 +50,14 @@ def typeError():
     print(Fore.RED + "[-] Invalid Input Type!! Only numbers are allowed. Try again." + Style.RESET_ALL)
 
 def check_os():
-    # os_version = os.popen('lsb_release -ds').read().split()
-    # if any("Ubuntu 22.04 LTS" in line for line in os_version):
-    #     print(Fore.RED + "\n\033[1m[-] This script can only be run on Ubuntu 22.04 LTS or it's subversions" + Style.RESET_ALL)
-    #     exit()
     try:
-        # Run the 'lsb_release' command and capture its output and error
         result = subprocess.run(['lsb_release', '-ds'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        
-        # if result.returncode != 0:
-        #     # The command exited with an error
-        #     error_message = result.stderr.strip()
-        #     print(Fore.RED + f"\n\033[1m[-] Error running 'lsb_release -ds': {error_message}" + Style.RESET_ALL)
-        #     exit(1)
-        
         os_version = result.stdout.split()
-        
         if any("Ubuntu 22.04 LTS" in line for line in os_version):
             print(Fore.RED + "\n\033[1m[-] This script can only be run on Ubuntu 22.04 LTS or its subversions" + Style.RESET_ALL)
             exit()
+            
     except Exception as e:
-        # Handle other exceptions (e.g., if subprocess.run() raises an exception)
         print(Fore.RED + "\n\033[1m[-] This script can only be run on Ubuntu 22.04 LTS or its subversions" + Style.RESET_ALL)
         exit(1)
 
