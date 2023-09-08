@@ -4,13 +4,13 @@ from colorama import Fore, Style
 logger = misc.logger.setup_logger()
 
 def http_proxy(): 
-    compare = "squid	unknown ok not-installed	not-installed"
+    compare = "squid	install ok installed	installed"
     command = "dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' squid"
     process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
     output = process.stdout.decode('utf-8')
 
     if compare in output:
-        print(Fore.RED + "\n\033[1m[+] http proxy server was found." + Style.RESET_ALL)
+        print(Fore.GREEN + "\n\033[1m[+] http proxy server (squid server) was found." + Style.RESET_ALL)
         user_input = input(Fore.GREEN + "\n\033[1m[+] Do you want to remove http proxy server? (y/n): " + Style.RESET_ALL)
         if user_input.lower() not in ['y', 'n']:
             print(Fore.RED + "\n\033[1m[-] Invalid input. Please enter 'y' or 'n'." + Style.RESET_ALL)
