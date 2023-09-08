@@ -20,6 +20,7 @@ banner = """
 print(Fore.BLUE + banner + Style.RESET_ALL)
 
 def main():
+    check_os()
     print(Fore.GREEN + possible_commands + Style.RESET_ALL)
     try:
         usrinput()
@@ -46,6 +47,12 @@ def invalidInput():
 def typeError():
     print(Fore.RED + "[-] Invalid Input Type!! Only numbers are allowed. Try again." + Style.RESET_ALL)
 
+def check_os():
+    os_version = os.popen('lsb_release -ds').read().split()
+    if any("Ubuntu 22.04 LTS" in line for line in os_version):
+        print(Fore.RED + "\n\033[1m[-] This script can only be run on Ubuntu 22.04 LTS or it's subversions" + Style.RESET_ALL)
+        exit()
+
 #Possible command options list
 possible_commands = """
 [1] Configure the Local Login Waning Banner
@@ -63,7 +70,7 @@ command_dict = {
 }
 
 if __name__ == '__main__':
-    if(os.getuid() == 0):
+    if(os.getuid() == 0): # Check if script has sudo privilages
         main()
     else:
         print(Fore.RED + "\n\033[1mThis script has to be run with root privilages\033[0m" + Style.RESET_ALL)
