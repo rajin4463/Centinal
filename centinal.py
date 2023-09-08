@@ -51,12 +51,12 @@ def typeError():
 
 def check_os():
     try:
-        result = subprocess.run(['lsb_release', '-ds'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        os_version = result.stdout.split()
-        if any("Ubuntu 22.04 LTS" in line for line in os_version):
+        with open('/etc/os-release', 'r') as os_version_info:
+            os_version = os_version_info.read()
+        if "VERSION_ID=\"22.04\"" not in os_version:
             print(Fore.RED + "\n\033[1m[-] This script can only be run on Ubuntu 22.04 LTS or its subversions" + Style.RESET_ALL)
             exit()
-            
+
     except Exception as e:
         print(Fore.RED + "\n\033[1m[-] This script can only be run on Ubuntu 22.04 LTS or its subversions" + Style.RESET_ALL)
         exit(1)
