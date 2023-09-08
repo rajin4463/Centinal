@@ -10,8 +10,8 @@ def http_proxy():
     output = process.stdout.decode('utf-8')
 
     if compare in output:
-        print(Fore.GREEN + "\n\033[1m[+] http proxy server (squid server) was found." + Style.RESET_ALL)
-        user_input = input(Fore.GREEN + "\n\033[1m[+] Do you want to remove http proxy server? (y/n): " + Style.RESET_ALL)
+        print(Fore.RED + "\n\033[1m[+] http proxy server (squid server) was found." + Style.RESET_ALL)
+        user_input = input(Fore.GREEN + "\n\033[1m[+] Do you want to remove http proxy server? [Y/n]: " + Style.RESET_ALL)
         if user_input.lower() not in ['y', 'n']:
             print(Fore.RED + "\n\033[1m[-] Invalid input. Please enter 'y' or 'n'." + Style.RESET_ALL)
             http_proxy()
