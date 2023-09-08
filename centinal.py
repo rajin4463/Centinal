@@ -6,6 +6,7 @@ from controls.local_login_warning_banner import localLogingWarning
 from controls.telnet_client_not_installed import telnet
 from controls.password_creation import passwd_path
 from controls.minimumdays import minpass
+from controls.http_proxy_server_not_installed import http_proxy
 
 banner = """
  ::::::::  :::::::::: ::::    ::: ::::::::::: ::::::::::: ::::    :::     :::     :::        
@@ -59,6 +60,7 @@ possible_commands = """
 [2] Ensure the telnet client is not installed
 [3] Ensure password creation requirments are configured
 [4] Minimum number of days for password changed
+[5] Ensure the HTTP proxy server ( squid server) is not installed
 """
 
 # Command Dictonary to store the commands and related exec nums
@@ -67,6 +69,7 @@ command_dict = {
     2: telnet,
     3: passwd_path,
     4: minpass,
+    5: http_proxy
 }
 
 if __name__ == '__main__':
