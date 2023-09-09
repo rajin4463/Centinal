@@ -6,7 +6,7 @@ logger = misc.logger.setup_logger()
 def telnet():
     compare = "telnet	install ok installed	installed"
     command = "dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' telnet"
-    process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
+    process = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output = process.stdout.decode('utf-8')
 
     if compare in output:
