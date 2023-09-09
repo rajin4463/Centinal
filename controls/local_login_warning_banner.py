@@ -32,7 +32,7 @@ def localLogingWarning():
                 content = ''.join(lines)
             if (banner_text in content):
                 logger.error('''[-] /etc/issue has been modified with the warning banner.''')
-                print(Fore.RED + "\n\033[1m[+] Local Login Warning Banner change FAILED: banner seems to be in place" + Style.RESET_ALL)
+                print(Fore.GREEN + "\n\033[1m[+] Local Login Warning Banner seems to be in place!" + Style.RESET_ALL)
             else:
                 if any(desired_string in line for line in lines):
                     modifyFiles()
