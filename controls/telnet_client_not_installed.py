@@ -18,7 +18,7 @@ def telnet():
         elif user_input.lower() == 'n':
             return
         else:
-            print("\n\033[1m[-] Purging client" + Style.RESET_ALL)
+            print(Fore.RED + "\n\033[1m[-] Purging client" + Style.RESET_ALL)
             purgeCommand = ["apt-get", "purge", "-y", "telnet"]
             process = subprocess.run(purgeCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             if process.returncode == 0:
