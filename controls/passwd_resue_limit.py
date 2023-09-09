@@ -11,8 +11,8 @@ line_modified = False
 
 # Loop through the file using fileinput
 for line in fileinput.input(file_path, inplace=True):
+    parts = line.split()
     if line.startswith('password [success=1 default=ignore] pam_unix.so obscure use_authtok try_first_pass yescrypt'):
-        parts = line.split()
         for i, part in enumerate(parts):
             if part.startswith('remember='):
                 current_remember = int(part.split('=')[1])
