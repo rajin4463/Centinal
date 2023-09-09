@@ -67,7 +67,7 @@ possible_commands = """
 [2] Ensure the telnet client is not installed
 [3] Ensure password creation requirments are configured
 [4] Minimum number of days for password changed
-[5] Ensure the HTTP proxy server ( squid server) is not installed
+[5] Ensure the HTTP proxy server ( squid server ) is not installed
 """
 
 # Command Dictonary to store the commands and related exec nums

@@ -18,8 +18,9 @@ def minpass():
     check_process = subprocess.run(check_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
     if check_process.returncode != 0:
         logger.error("[-] Minimum number of days for password change FAILED: Failed to run chage command.\n")
-        logger.error(f'[-] {check_command.stderr.decode("utf-8")}')
+        logger.error(f'[-] {check_process.stderr.decode("utf-8")}')
         print(Fore.RED + "\n\033[1m[-] Minimum number of days for password change FAILED: error something went wrong.\n")
+        print(Fore.RED + "\n\033[1m[-] Entered Username might me wrong/incorrect.\n")
         print("\n\033[1m[-] Check Error logs for more detail." + Style.RESET_ALL)
         return
     else:
