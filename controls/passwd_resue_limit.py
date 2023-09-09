@@ -43,7 +43,7 @@ name_to_find ='pam_unix.so'
 new_line_content = 'password        [success=1 default=ignore]      pam_unix.so obscure use_authtok try_first_pass yescrypt remember=5'
 
 
-def passwd_path():
+def passwd_reuse():
     if os.path.exists(fileName):
         with open(fileName,'r') as file:
             lines = file.readlines()
@@ -60,7 +60,7 @@ def passwd_path():
                 print(Fore.RED + "\n\033[1m[+] Password resue limit won't be chnaged!" + Style.RESET_ALL)
             else:
                 print(Fore.RED + "\n\033[1m[-] INVALID INPUT: Enter 'y' or 'n'.\n" + Style.RESET_ALL)
-                passwd_path()
+                passwd_reuse()
     else:
         logger.error("[-] Password resue limit FAILED: File not found")
         logger.error(f"Common password path doesn't exists. \n File not found: {fileName}")
