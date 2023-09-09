@@ -3,9 +3,9 @@ import misc.logger
 from colorama import Fore, Style
 logger = misc.logger.setup_logger()
 
-def http_proxy(): 
-    compare = "squid	install ok installed	installed"
-    command = "dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' squid"
+def http_server(): 
+    compare = "dpkg-query: no packages found matching apache2"
+    command = "dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' apache2"
     process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
     output = process.stdout.decode('utf-8')
 
@@ -19,7 +19,7 @@ def http_proxy():
             return
         else:   
             print(Fore.RED + "\n\033[1m[-] Purging http server" + Style.RESET_ALL)
-            purgeCommand = ["apt-get", "purge", "-y", "squid"]
+            purgeCommand = ["apt-get", "purge", "-y", "apache2"]
             process = subprocess.run(purgeCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             if process.returncode == 0:
                 print(Fore.GREEN + "\n\033[1m[+] Successfully purged http server." + Style.RESET_ALL)

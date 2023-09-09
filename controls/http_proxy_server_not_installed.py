@@ -3,7 +3,7 @@ import misc.logger
 from colorama import Fore, Style
 logger = misc.logger.setup_logger()
 
-def http_server(): 
+def http_proxy(): 
     compare = "squid	install ok installed	installed"
     command = "dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' squid"
     process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
