@@ -4,9 +4,9 @@ from colorama import Fore, Style
 logger = misc.logger.setup_logger()
 
 def http_server(): 
-    compare = "dpkg-query: no packages found matching apache2"
+    compare = "apache2	install ok installed	installed"
     command = "dpkg-query -W -f='${binary:Package}\t${Status}\t${db:Status-Status}\n' apache2"
-    process = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
+    process = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output = process.stdout.decode('utf-8')
 
     if compare in output:
@@ -30,4 +30,5 @@ def http_server():
                 print("\n\033[1m[-] Check Error logs for more detail." + Style.RESET_ALL)
     else:
         print(Fore.RED + "\n\033[1m[-] http server dosen't seem to be installed." + Style.RESET_ALL)
-        logger.error(f"[-] http proxy server purge FAILED\n [-] {output}")
+        logger.error("[-] http server purge FAILED\n")
+        logger.error(f'[-] {process.stderr.decode("utf-8")}')

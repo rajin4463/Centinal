@@ -30,4 +30,5 @@ def telnet():
                 print("\n\033[1m[-] Check Error logs for more detail." + Style.RESET_ALL)
     else:
         print(Fore.RED + "\n\033[1m[-] Telnet client purge FAILED: error telnet client dosen't seem to be installed." + Style.RESET_ALL)
-        logger.error(f"[-] Telnet client purge FAILED\n [-] {output}")
+        logger.error(f"[-] Telnet client purge FAILED\n")
+        logger.error(f'[-] {process.stderr.decode("utf-8")}')
