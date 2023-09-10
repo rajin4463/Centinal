@@ -4,7 +4,7 @@ alert tcp #EXTERNAL_NET any -> $HOME_NET any (flags:S; msg:"POSSIBLE SYN FLOOD D
 # PORT SCAN
 alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Port Scanning Detected"; flow:to_server,established; threshold:type limit,track by_src,count 5,seconds 10; sid:1000001;)
 
-#PHISHING LINK
+# PHISHING LINK
 alert udp any any -> $HOME_NET any (msg:"User Clicked on Phishing Link"; content:"|68 11 7c 37|"; sid:10000012;)
 
 # SSH BRUTE FORCE ATTACK
