@@ -1,5 +1,5 @@
 # SYN FLOOD RULE
-alert tcp #EXTERNAL_NET any -> $HOME_NET any (flags:S; msg:"POSSIBLE SYN FLOOD DOS ATTACK"; detection_filter:  track by_src, seconds 10; priorty:5; sid: 20001; rev:4;)
+alert tcp #EXTERNAL_NET any -> $HOME_NET any (flags:S; msg:"POSSIBLE SYN FLOOD DOS/DDOS ATTACK"; detection_filter:  track by_src, seconds 10; priorty:5; sid: 20001; rev:4;)
 
 # PORT SCAN
 alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Port Scanning Detected"; flow:to_server,established; threshold:type limit,track by_src,count 5,seconds 10; sid:1000001;)
@@ -8,4 +8,4 @@ alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Port Scanning Detected"; flow
 alert udp any any -> $HOME_NET any (msg:"User Clicked on Phishing Link"; content:"|68 11 7c 37|"; sid:10000012;)
 
 # SSH BRUTE FORCE ATTACK
-alert tcp $EXTERNAL_NET any -> $HOME_NET 22 (msg: "BLEEDING-EDGE Potential SSH Scan"; flags: S; flowbits: set,ssh.brute.attempt; threshold: type threshold, track by_src, count 5, seconds 120; classtype: suspicious-login; sid: 2001219; rev:10; )
+alert tcp $EXTERNAL_NET any -> $HOME_NET 22 (msg: "Potential SSH Atack"; flags: S; flowbits: set,ssh.brute.attempt; threshold: type threshold, track by_src, count 5, seconds 120; classtype: suspicious-login; sid: 2001219; rev:10; )
