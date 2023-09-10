@@ -2,35 +2,33 @@ import os
 import misc.logger
 from colorama import Fore, Style
 logger = misc.logger.setup_logger()
-fileName= '/etc/pam.d/common-password'
-
-pass_string = 'password        requisite                       pam_pwquality.so minlen=14 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1 difok=7 enforce_for_root retry=3'
+fileName = '/etc/pam.d/common-password'
 
 file_path = '/etc/pam.d/common-password'
-name_to_find ='pam_pwquality.so'
-new_line_content = 'password        requisite                       pam_pwquality.so minlen=14 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1 difok=7 enforce_for_root retry=3'
+name_to_find ='pam_unix.so'
+new_line_content = 'password        [success=1 default=ignore]      pam_unix.so obscure use_authtok try_first_pass yescrypt remember=5'
 
 
-def passwd_path():
+def passwd_reuse():
     if os.path.exists(fileName):
         with open(fileName,'r') as file:
             lines = file.readlines()
             content = ''.join(lines)
         file.close()
-        if(pass_string in content):
-            print(Fore.GREEN + '\n\033[1m[+] Minimum password length Already updated!' + Style.RESET_ALL)
+        if(new_line_content in content):
+            print(Fore.GREEN + '\n\033[1m[+] Password resue limit Already updated!' + Style.RESET_ALL)
         else:
-            userCheck = input(Fore.GREEN + f"\n\033[1m[+] Do you want to change Minimum password length to 14 [Y/n] ? " + Style.RESET_ALL)
+            userCheck = input(Fore.GREEN + f"\n\033[1m[+] Do you want to change Password resue limit to 5 [Y/n] ? " + Style.RESET_ALL)
             userCheck = userCheck.lower()
             if userCheck == 'y':
                 modifypass(file_path, name_to_find,new_line_content)
             elif (userCheck == 'n'): 
-                print(Fore.RED + "\n\033[1m[+] Minimum password length won't be chnaged!" + Style.RESET_ALL)
+                print(Fore.RED + "\n\033[1m[+] Password resue limit won't be chnaged!" + Style.RESET_ALL)
             else:
                 print(Fore.RED + "\n\033[1m[-] INVALID INPUT: Enter 'y' or 'n'.\n" + Style.RESET_ALL)
-                passwd_path()
+                passwd_reuse()
     else:
-        logger.error("[-] Minimum password length FAILED: File not found")
+        logger.error("[-] Password resue limit FAILED: File not found")
         logger.error(f"Common password path doesn't exists. \n File not found: {fileName}")
         print(Fore.RED + "\n\033[1m[-] Common password path doesn't exists" + Style.RESET_ALL)
         print(Fore.RED + "\n\033[1mCheck logs for more information" + Style.RESET_ALL)
@@ -50,13 +48,13 @@ def modifypass(file_path, name_to_find,new_line_content):
                 for line_number, line_content in enumerate(input_file, start=1):
                     if line_number == line_number_to_edit:
                         temp_file.write(new_line_content + '\n')
-                        print(Fore.GREEN + '\n\033[1m[+] Minimum password length set to 14 characters!' + Style.RESET_ALL)
+                        print(Fore.GREEN + '\n\033[1m[+] Password resue limit set to remember 5 old passwrods!' + Style.RESET_ALL)
                     else:
                         temp_file.write(line_content)
             os.replace(temp_file_path, file_path)
             return True
         else:
-            logger.error("[-] Minimum password length FAILED: pam_pwquality.so File not found")
-            logger.error("[-] Minimum password length not set.")
-            print(Fore.RED + "\n\033[1m[-] Minimum password length FAILED: pam_pwquality.so File not found" + Style.RESET_ALL)
-            print(Fore.RED + "\n\033[1m[-] Minimum password length not set." + Style.RESET_ALL)
+            logger.error(f"[-] Password resue limit FAILED: {fileName} File not found")
+            logger.error("[-] Password resue limit not set.")
+            print(Fore.RED + f"\n\033[1m[-] Password resue limit FAILED: {fileName} File not found" + Style.RESET_ALL)
+            print(Fore.RED + "\n\033[1m[-] Password resue limit not set." + Style.RESET_ALL)
