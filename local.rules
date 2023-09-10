@@ -2,4 +2,4 @@
 alert tcp any any -> $HOME_NET any (flags:S; msg:"POSSIBLE SYN FLOOD DOS ATTACK"; detection_filter:  track by_src, seconds 10; priorty:5; sid: 20001; rev:4;)
 
 # PORT SCAN
-alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Port Scanning Detected"; flow:to_server,established; content:"[FF FF FF FF]"; threshold:type: type limit,track by_src,count 5,seconds 10; sid:1000001;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Port Scanning Detected"; flow:to_server,established; content:"[FF FF FF FF]"; threshold:type limit,track by_src,count 5,seconds 10; sid:1000001;)
