@@ -1,6 +1,6 @@
 # SYN FLOOD RULE
 # CAN CUSTOMISE FOR A SPECOFOC PORT EG: PORT 80, 8080
-alert tcp #EXTERNAL_NET any -> $HOME_NET any (flags:S; msg:"POSSIBLE SYN FLOOD DOS/DDOS ATTACK"; detection_filter:  track by_src, seconds 10; priorty:5; sid: 20001; rev:4;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (flags:S; msg:"POSSIBLE SYN FLOOD DOS/DDOS ATTACK"; detection_filter:  track by_src, seconds 10; priorty:5; sid: 20001; rev:4;)
 
 # PORT SCAN
 # SHOWING ONLY OPEN PORTS IS FINE
