@@ -93,5 +93,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as snort_server:
 ##################################################################################################################
 Snort rules
 1.Detecting Suspicious Email Subjects with Regular Expressions:
-alert tcp any any -> any any (msg:"Suspicious Email Detected"; content:"Subject:"; content:"urgent"; nocase; content:"important"; nocase; content:"free giveaway"; nocase; sid:1000001;)
+alert tcp any any -> any 25 (msg:"Suspicious Email Detected"; content:"Subject:"; content:"urgent"; nocase; content:"important"; nocase; content:"free giveaway"; nocase; sid:1000001;)
 
