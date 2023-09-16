@@ -7,8 +7,8 @@ alert tcp $EXTERNAL_NET any -> $HOME_NET any (flags:S; msg:"POSSIBLE SYN FLOOD D
 alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Port Scanning Detected"; flow:to_server,established; threshold:type limit,track by_src,count 5,seconds 10; sid:1000001;)
 
 # PHISHING LINK
-alert udp any any -> $HOME_NET any (msg:"User Clicked on Phishing Link"; content:"|68 11 7c 37|"; sid:10000012;)
+alert tcp any any -> any 25 (msg:"Suspicious Email Detected"; content:"Subject:"; content:"urgent"; nocase; content:"important"; nocase; content:"free giveaway"; nocase; sid:1000001;)
 
 # SSH BRUTE FORCE ATTACK
 # TRYING USING ESTABLISHED CONNECTION CHEKING ONLY 
-alert tcp $EXTERNAL_NET any -> $HOME_NET 22 (msg: "Potential SSH Atack"; flags: S; flowbits: set,ssh.brute.attempt; threshold: type threshold, track by_src, count 5, seconds 120; classtype: suspicious-login; sid: 2001219; rev:10; )
+alert tcp $EXTERNAL_NET any -> $HOME_NET 22 (msg: "Potential SSH Atack"; flags: S; priority:5; threshold: type threshold, track by_src, count 10, seconds 120; classtype: suspicious-login; sid: 2001219; rev:10; )
